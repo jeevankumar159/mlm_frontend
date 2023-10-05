@@ -14,17 +14,26 @@ const LoginSignup = () => {
             <div className="underline"></div>
         </div>
         <div className="inputs">
+
+        {action=="Login"?<div></div>:<div className="input">
+        <input type="sponser" placeholder='Sponser Id *' />
+            </div>}
             {action=="Login"?<div></div>:<div className="input">
-                <img src={user_icon} alt="" />
-                <input type="text" placeholder='Name' />
+                <input type="sponser name" placeholder='Sponser Name' />    
+
+            </div>}
+            {action=="Login"?<div></div>:<div className="input">
+                <input type="text" placeholder='Name *' />
+            </div>}
+            {action=="Login"?<div></div>:            <div className="input">
+                <input type="mobile" placeholder='Mobile *' />
             </div>}
 
+
             <div className="input">
-                <img src={email_icon} alt="" />
-                <input type="email" placeholder='Email Id' />
+                <input type="email" placeholder='Email *' />
             </div>
             <div className="input">
-                <img src={password_icon} alt="" />
                 <input type="password" placeholder='Password' />
             </div>
         </div>
