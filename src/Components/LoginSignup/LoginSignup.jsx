@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import './LoginSignup.css'
-import user_icon from '../Assets/person.png'
-import email_icon from '../Assets/email.png'
-import password_icon from '../Assets/password.png'
+import { useLocation } from 'react-router-dom';
+
 
 
 const LoginSignup = () => {
-    const [action,setAction]= useState("Login");
+    const [action, setAction] = useState("Login");
+    const [sponserId, setSponserId] = useState('');
+    const location = useLocation();
+
+    // Function to parse query parameters from the URL
+    const getQueryParams = () => {
+        const queryParams = new URLSearchParams(location.search);
+        return queryParams.get("sponserId") || "";
+    };
+
+    // Update sponserId when the URL changes
+    useEffect(() => {
+        const newSponserId = getQueryParams();
+        setSponserId(newSponserId);
+    }, [location.search]);
   return (
     <div className='container'>
         <div className='header'>
@@ -16,7 +29,12 @@ const LoginSignup = () => {
         <div className="inputs">
 
         {action=="Login"?<div></div>:<div className="input">
-        <input type="sponser" placeholder='Sponser Id *' />
+            <input
+                type="text"
+                placeholder='Sponser Id *'
+                value={sponserId || ''} // Set the value of the input field to sponserId
+                readOnly // Make the input field read-only if needed
+            />
             </div>}
             {action=="Login"?<div></div>:<div className="input">
                 <input type="sponser name" placeholder='Sponser Name' />    
